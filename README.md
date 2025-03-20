@@ -19,5 +19,10 @@ When we run `/sleep` and then `/`, the browser will take some time to load in bo
 ## Milestone 5
 Now, the web server can handle multiple requests at the same time using ThreadPool. Instead of creating a new thread for every request, which can be slow, the ThreadPool creates a fixed number of worker threads that are always running and waiting for tasks. Each worker has an id and a thread that loops forever, checking for new tasks. The ThreadPool uses a channel to send tasks to these workers. When execute is called, the task is sent through the channel, and one of the workers picks it up and runs it. This way, requests are handled faster, and the server does not waste time creating and destroying threads repeatedly.
 
+## Bonus
+For the bonus, we make a new function `build` to replace teh `new` function. We replace the `new` function with a `build` function in the `ThreadPool` struct. Before, if the size was 0, the program would panic and stop running. Now, `build` returns a Result, so if the size is 0, it gives an error message instead of crashing. This makes the program more reliable because it allows handling errors safely instead of forcing the program to exit. Everything else in the program stays the same, but now we can check if `build` succeeds before using the thread pool. By using `build`, we can handle error better.
+
+
+
 
 **Disclaimer**: I write the reflection after I am finished with each milestone, but I didn't realise I put the `README.md` file in the parent directory of this one and that is why it seems like I commited 4 reflections at once 🙏
