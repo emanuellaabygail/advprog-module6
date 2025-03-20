@@ -15,3 +15,9 @@ The refactoring was needed because both the `if` and `else` block contained simi
 
 ## Milestone 4
 When we run `/sleep` and then `/`, the browser will take some time to load in both. After the `/sleep` is loaded, the `/` is instantly loaded. Although our program only make it sleep or 5 seconds in `/sleep`, we still have to wait when loading the `/`. This is because `handle_function` function runs in a single-threaded environment and we need to wait for one request to be handled for the next to be handled. So because the `/sleep` request in handled first and it requires our program to delay for 5 seconds, the browser have to wait for 5 seconds, handle the `/sleep` request, then handle the `/` request. If multiple users try to access the server at the same time, they will experience delays because the server handles only one request at a time. This is inefficient and would lead to slow response times under high traffic.
+
+## Milestone 5
+Now, the web server can handle multiple requests at the same time using ThreadPool. Instead of creating a new thread for every request, which can be slow, the ThreadPool creates a fixed number of worker threads that are always running and waiting for tasks. Each worker has an id and a thread that loops forever, checking for new tasks. The ThreadPool uses a channel to send tasks to these workers. When execute is called, the task is sent through the channel, and one of the workers picks it up and runs it. This way, requests are handled faster, and the server does not waste time creating and destroying threads repeatedly.
+
+
+**Disclaimer**: I write the reflection after I am finished with each milestone, but I didn't realise I put the `README.md` file in the parent directory of this one and that is why it seems like I commited 4 reflections at once 🙏
