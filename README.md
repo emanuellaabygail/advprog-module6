@@ -24,5 +24,8 @@ For the bonus, we make a new function `build` to replace teh `new` function. We 
 
 
 
+<br>
+<br>
+<br>
 
 **Disclaimer**: I write the reflection after I am finished with each milestone, but I didn't realise I put the `README.md` file in the parent directory of this one and that is why it seems like I commited 4 reflections at once 🙏
